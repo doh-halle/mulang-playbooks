@@ -1,0 +1,24 @@
+---
+- name: "Install Mulangs first Web Server using  Ansible"
+  hosts: fonchastreet_web
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+  tasks:
+
+    - name: Install Apache2
+      yum: name=httpd state=latest
+      become: true
+
+    - name: Ensure Apache2 is Running
+      service: name=httpd state=started
+
+    - name: Open Port 80 for http Access
+      firewalld: service=http permanent=true state=enabled
+
+    - name: Restart the  Firewall Service
+      service: name=firewalld state=restarted
+
+    - name: Copy Web Folder
+      copy: src=web_101/ dest=/var/www/html/
+
