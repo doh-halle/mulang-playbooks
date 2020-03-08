@@ -1,2 +1,2 @@
 # mulang-playbooks
-Config Management - Ansible / Windows DSC
+Configuration Management - Ansible / Windows DSC
